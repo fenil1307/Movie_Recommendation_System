@@ -1,4 +1,4 @@
-# Movie_Recommendation_System
+<img width="1406" alt="Screenshot 2024-12-30 at 3 26 17 PM" src="https://github.com/user-attachments/assets/4a44123f-45e1-4f2d-a536-818c9c463877" /># Movie_Recommendation_System
 Overview
 
 ## Features
@@ -44,7 +44,9 @@ Overview
 3. Open the link displayed in the terminal to access the app in your browser.
 
 
-Streamlit
+Streamlit!
+[Uploading Screenshot 2024-12-30 at 3.26.17 PM.png…]()
+
 
 
 

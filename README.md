@@ -1,4 +1,7 @@
-<img width="1406" alt="Screenshot 2024-12-30 at 3 26 17 PM" src="https://github.com/user-attachments/assets/4a44123f-45e1-4f2d-a536-818c9c463877" /># Movie_Recommendation_System
+# Movie_Recommendation_System
+<img width="1406" alt="Screenshot 2024-12-30 at 3 26 17 PM" src="https://github.com/user-attachments/assets/4a44123f-45e1-4f2d-a536-818c9c463877" />
+<img width="1389" alt="Screenshot 2024-12-30 at 3 27 37 PM" src="https://github.com/user-attachments/assets/dac48704-e239-402c-a93e-1063966b87df" />
+
 Overview
 
 ## Features
@@ -47,7 +50,7 @@ Overview
 Streamlit!
 [Uploading Screenshot 2024-12-30 at 3.26.17 PM.png…]()
 
-<img width="1389" alt="Screenshot 2024-12-30 at 3 27 37 PM" src="https://github.com/user-attachments/assets/dac48704-e239-402c-a93e-1063966b87df" />
+
 
 
 

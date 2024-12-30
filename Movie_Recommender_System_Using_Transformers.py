@@ -277,7 +277,7 @@ movies_df = load_data()
 movies_df['combined_text'] = movies_df[['title', 'description', 'genres']].fillna('').agg(' '.join, axis=1)
 
 # Set Hugging Face token
-os.environ['HUGGINGFACE_TOKEN'] = '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'  # Replace with your actual token
+os.environ['HUGGINGFACE_TOKEN'] = 'hf_HAWbtngoFzZIyvioNcwFpRmQGaKQei'  # Replace with your actual token
 hf_token = os.getenv('HUGGINGFACE_TOKEN')
 
 # Initialize the embedding model

@@ -83,7 +83,7 @@
 # import time
 #
 # # Set page config
-# st.set_page_config(page_title="Movie Recommendation Engine", page_icon="🎬", layout="wide")
+# st.set_page_config(page_title="Movie Recommendation Engine", page_icon="", layout="wide")
 #
 # # Custom CSS
 # st.markdown("""
@@ -143,7 +143,7 @@
 #
 #
 # # Main content
-# st.title("🎬 Movie Recommendation Engine")
+# st.title(" Movie Recommendation Engine")
 #
 # # Initialize progress
 # progress_bar = st.progress(0)
@@ -161,7 +161,7 @@
 # status_text.empty()
 #
 # # User input
-# user_input = st.text_input("💡 Describe the kind of movie you're looking for:",
+# user_input = st.text_input(" Describe the kind of movie you're looking for:",
 #                            placeholder="e.g., 'heartfelt romantic comedy'")
 #
 # # Sidebar filters
@@ -169,7 +169,7 @@
 # min_votes = st.sidebar.slider('Minimum Number of Votes', 0, 1000000, 10000, 1000)
 #
 # if user_input:
-#     st.write(f"🔍 Searching for movies related to: **{user_input}**")
+#     st.write(f" Searching for movies related to: **{user_input}**")
 #
 #     # Apply filters
 #     filtered_df = movies_df[
@@ -178,7 +178,7 @@
 #         ]
 #
 #     if filtered_df.empty:
-#         st.warning("⚠️ No movies match the filter criteria.")
+#         st.warning("⚠ No movies match the filter criteria.")
 #     else:
 #         # Create a new FAISS index for filtered movies
 #         filtered_texts = filtered_df['combined_text'].tolist()
@@ -192,7 +192,7 @@
 #             movie = filtered_df.iloc[top_match_index]
 #
 #             # Show the top-matching movie
-#             st.success("🎉 We found a movie you might like!")
+#             st.success(" We found a movie you might like!")
 #
 #             col1, col2 = st.columns([1, 2])
 #
@@ -203,14 +203,14 @@
 #                 st.subheader(movie['title'])
 #                 st.write(f"**Description:** {movie['description']}")
 #                 st.write(f"**Genres:** {movie['genres']}")
-#                 st.write(f"**IMDb Score:** {movie['imdb_score']:.1f} ⭐")
+#                 st.write(f"**IMDb Score:** {movie['imdb_score']:.1f} ")
 #                 st.write(f"**IMDb Votes:** {movie['imdb_votes']:,}")
 #
 #             # Add a button to get more recommendations
-#             if st.button("🔄 Get Another Recommendation"):
+#             if st.button(" Get Another Recommendation"):
 #                 st.experimental_rerun()
 #         else:
-#             st.warning("😕 No similar movies found.")
+#             st.warning(" No similar movies found.")
 #
 # # Footer
 # st.sidebar.markdown("---")
@@ -238,10 +238,10 @@ import numpy as np
 import streamlit as st
 import time
 
-# Set page config
-st.set_page_config(page_title="Movie Recommendation Engine", page_icon="🎬", layout="wide")
 
-# Custom CSS
+st.set_page_config(page_title="Movie Recommendation Engine", layout="wide")
+
+
 st.markdown("""
 <style>
     .reportview-container {
@@ -262,51 +262,51 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar
-st.sidebar.title("🎥 Movie Filters")
+
+st.sidebar.title(" Movie Filters")
 
 @st.cache_data
 def load_data():
     url = "https://raw.githubusercontent.com/datum-oracle/netflix-movie-titles/main/titles.csv"
     return pd.read_csv(url)
 
-# Load data
+
 movies_df = load_data()
 
-# Transform the Data
+
 movies_df['combined_text'] = movies_df[['title', 'description', 'genres']].fillna('').agg(' '.join, axis=1)
 
-# Set Hugging Face token
-os.environ['HUGGINGFACE_TOKEN'] = 'hf_HAWbtngoFzZIyvioNcwFpRmQGaKQei'  # Replace with your actual token
+
+os.environ['HUGGINGFACE_TOKEN'] = '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'  
 hf_token = os.getenv('HUGGINGFACE_TOKEN')
 
-# Initialize the embedding model
+
 @st.cache_resource
 def init_embed_model():
     return HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2', model_kwargs={'token': hf_token})
 
 embed_model = init_embed_model()
 
-# Generate embeddings and create FAISS index
+
 @st.cache_resource
 def create_faiss_index(texts):
     return FAISS.from_texts(texts, embed_model)
 
-# Initialize session state for recommendation
+
 if 'recommendation_count' not in st.session_state:
     st.session_state.recommendation_count = 0
 
 if 'filtered_faiss_index' not in st.session_state:
     st.session_state.filtered_faiss_index = None
 
-# Main content
-st.title("🎬 Movie Recommendation Engine")
 
-# Initialize progress
+st.title(" Movie Recommendation Engine")
+
+
 progress_bar = st.progress(0)
 status_text = st.empty()
 
-# Simulate initialization process
+
 for i in range(100):
     time.sleep(0.01)
     progress_bar.progress(i + 1)
@@ -317,41 +317,41 @@ time.sleep(1)
 progress_bar.empty()
 status_text.empty()
 
-# User input
-user_input = st.text_input("💡 Describe the kind of movie you're looking for:",
+
+user_input = st.text_input(" Describe the kind of movie you're looking for:",
                            placeholder="e.g., 'heartfelt romantic comedy'")
 
-# Sidebar filters
+
 min_imdb_score = st.sidebar.slider('Minimum IMDb Score', 0.0, 10.0, 5.0, 0.1)
 min_votes = st.sidebar.slider('Minimum Number of Votes', 0, 1000000, 10000, 1000)
 
 if user_input:
-    st.write(f"🔍 Searching for movies related to: **{user_input}**")
+    st.write(f" Searching for movies related to: **{user_input}**")
 
-    # Apply filters
+
     filtered_df = movies_df[
         (movies_df['imdb_score'].astype(float) >= min_imdb_score) &
         (movies_df['imdb_votes'].astype(float) >= min_votes)
     ]
 
     if filtered_df.empty:
-        st.warning("⚠️ No movies match the filter criteria.")
+        st.warning(" No movies match the filter criteria.")
     else:
-        # Create a new FAISS index for filtered movies
+        
         filtered_texts = filtered_df['combined_text'].tolist()
 
         if st.session_state.filtered_faiss_index is None:
             st.session_state.filtered_faiss_index = create_faiss_index(filtered_texts)
 
-        # Search for the most similar movie
+        
         similar_docs = st.session_state.filtered_faiss_index.similarity_search(user_input, k=1)
 
         if similar_docs:
             top_match_index = filtered_texts.index(similar_docs[0].page_content)
             movie = filtered_df.iloc[top_match_index]
 
-            # Show the top-matching movie
-            st.success("🎉 We found a movie you might like!")
+            
+            st.success(" We found a movie you might like!")
 
             col1, col2 = st.columns([1, 2])
 
@@ -362,22 +362,22 @@ if user_input:
                 st.subheader(movie['title'])
                 st.write(f"**Description:** {movie['description']}")
                 st.write(f"**Genres:** {movie['genres']}")
-                st.write(f"**IMDb Score:** {movie['imdb_score']:.1f} ⭐")
+                st.write(f"**IMDb Score:** {movie['imdb_score']:.1f} ")
                 st.write(f"**IMDb Votes:** {movie['imdb_votes']:,}")
 
-            # Button to get another recommendation
-            if st.button("🔄 Get Another Recommendation"):
-                # Increment recommendation count in session state
+            
+            if st.button(" Get Another Recommendation"):
+                
                 st.session_state.recommendation_count += 1
-                # Reset the FAISS index for the next recommendation
+                
                 st.session_state.filtered_faiss_index = None
-                # Re-run the script without triggering an error
+                
                 st.experimental_rerun()
         else:
-            st.warning("😕 No similar movies found.")
+            st.warning(" No similar movies found.")
 
-# Footer
+
 st.sidebar.markdown("---")
 st.sidebar.info(
     "This app uses FAISS for efficient similarity search and Hugging Face's sentence transformers for text embedding.")
-st.sidebar.text("© 2024 Movie Recommender")
+st.sidebar.text(" 2024 Movie Recommender")

@@ -1,6 +1,6 @@
 # Movie_Recommendation_System
 <img width="1434" alt="Screenshot 2025-05-13 at 5 50 41 PM" src="https://github.com/user-attachments/assets/0efb3275-7e02-4356-8d82-1ca39384918f" />
-<img width="1389" alt="Screenshot 2024-12-30 at 3 27 37 PM" src="https://github.com/user-attachments/assets/dac48704-e239-402c-a93e-1063966b87df" />
+
 
 
 
